@@ -33,3 +33,9 @@ def XMAS(input, length):
 
 invalid = XMAS(list, preamble)
 print(invalid)
+
+def find_sum(input):
+    start = 0
+    for x in input:
+        dummy_list = input.copy()
+        dummy_list = dummy_list[x+1:]
