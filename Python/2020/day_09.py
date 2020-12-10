@@ -1,10 +1,10 @@
 import re
-input_file = open("day_09_example.txt")
+input_file = open("day_09_input.txt")
 input_text = input_file.read()
 
-list = list(int(x) for x in input_text.split("\n"))
+data = list(int(x) for x in input_text.split("\n"))
 
-preamble = 5
+preamble = 25
 
 def check_valid(number, range):
     Valid = False
@@ -31,11 +31,23 @@ def XMAS(input, length):
         else:
             pos +=1
 
-invalid = XMAS(list, preamble)
+invalid = XMAS(data, preamble)
 print(invalid)
 
 def find_sum(input):
-    start = 0
     for x in input:
+        start = input.index(x)
         dummy_list = input.copy()
-        dummy_list = dummy_list[x+1:]
+        dummy_list = dummy_list[start+1:]
+        for y in dummy_list:
+            stop = input.index(y)
+            set = input[start:stop]
+            set.sort()
+            if sum(set) > invalid:
+                break
+            elif sum(set) == invalid:
+                return set[0] + set[-1]
+                break
+
+x = find_sum(data)
+print(x)
